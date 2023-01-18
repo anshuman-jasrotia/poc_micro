@@ -12,8 +12,10 @@ namespace CommandService.Data
                 var grpcClient = serviceScope.ServiceProvider.GetService<IPlatformDataClient>();
 
                 var platforms = grpcClient.ReturnAllPlatforms();
-
-                SeedData(serviceScope.ServiceProvider.GetService<ICommandRepo>(), platforms);
+                if (platforms != null)
+                {
+                    SeedData(serviceScope.ServiceProvider.GetService<ICommandRepo>(), platforms);
+                }
             }
         }
 
